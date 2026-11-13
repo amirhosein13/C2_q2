@@ -1,0 +1,87 @@
+@subtask samples
+copy ../public/examples/01.in
+copy ../public/examples/02.in
+
+# N = 1, or M = 1 with N <= 2: valid in onlyUR, tworows and minUR
+@testset line
+gen 100000 100000 exact 1 row any l1
+gen 100000 1 exact 100000 row any l2
+gen 100000 60 rand 100000 row any l3
+gen 2000 2 exact 1000 col any l4
+
+@subtask small
+gen_all 2 2 0 100
+gen_all 2 3 0 100
+gen_all 3 2 0 100
+gen_all 3 3 0 100
+gen_all 3 3 100 100
+gen_all 2 4 0 100
+gen_all 2 4 100 100
+gen_all 2 5 0 100
+gen_all 2 5 100 100
+gen_all 2 5 200 100
+gen 1000 10 rand 100 rand mix s1
+gen 1000 10 rand 100 rand any s2
+gen 1000 10 exact 100 rand mix s3
+gen 1000 10 exact 100 sq any s4
+gen 1000 10 exact 100 rand bad s5
+
+@subtask onlyUR
+@include line
+gen 100000 100000 exact 1 sq ur u1
+gen 100000 100000 exact 1 rand ur u2
+gen 100000 100000 exact 1 two ur u3
+gen 100000 100000 exact 1 tall ur u4
+gen 100000 100000 exact 1 wide ur u5
+gen 100000 100000 exact 1 sq maxU u6
+gen 100000 100000 exact 1 sq maxR u7
+gen 100000 100000 exact 1 col ur u8
+gen 100000 100000 exact 1 sq urbad u9
+gen 100000 1000 rand 100000 rand urmix u10
+gen 100000 30 rand 100000 rand urmix u11
+
+@subtask tworows
+@include line
+gen 100000 100000 exact 1 two any t1
+gen 100000 100000 exact 1 two maxD t2
+gen 100000 100000 exact 1 two maxL t3
+gen 100000 100000 exact 1 two half t4
+gen 100000 100000 exact 1 two dl t5
+gen 100000 100000 exact 1 two bad t6
+gen 100000 100000 exact 1 two edgeU t7
+gen 100000 100000 exact 1 two edgeR t8
+gen 100000 1000 rand 100000 two mix t9
+gen 100000 20 rand 100000 two mix t10
+
+@subtask minUR
+@include line
+gen 100000 100000 exact 1 sq dl m1
+gen 100000 100000 exact 1 rand dl m2
+gen 100000 100000 exact 1 tall dl m3
+gen 100000 100000 exact 1 wide dl m4
+gen 100000 100000 exact 1 sq maxD m5
+gen 100000 100000 exact 1 sq maxL m6
+gen 100000 100000 exact 1 sq dlbad m7
+gen 100000 1000 rand 100000 rand dlmix m8
+gen 100000 30 rand 100000 rand dlmix m9
+
+@subtask full
+@include samples small onlyUR tworows minUR
+gen 100000 100000 exact 1 sq any f1
+gen 100000 100000 exact 1 sq any f2
+gen 100000 100000 exact 1 rand any f3
+gen 100000 100000 exact 1 tall any f4
+gen 100000 100000 exact 1 wide any f5
+gen 100000 100000 exact 1 sq half f6
+gen 100000 100000 exact 1 rand half f7
+gen 100000 100000 exact 1 sq kmul f8
+gen 100000 100000 exact 1 tall kmul f9
+gen 100000 100000 exact 1 sq bad f10
+gen 100000 100000 exact 1 sq edgeU f11
+gen 100000 100000 exact 1 sq edgeR f12
+gen 100000 2000 rand 100000 rand mix f13
+gen 100000 100 rand 100000 rand mix f14
+gen 100000 10 rand 100000 rand mix f15
+gen 100000 5000 rand 100000 sq kmul f16
+gen 100000 99999 exact 2 row bad f17
+gen 100000 99999 exact 2 col bad f18

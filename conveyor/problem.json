@@ -1,0 +1,12 @@
+{
+    "name": "conveyor",
+    "code": "conveyor",
+    "title": "تسمه‌نقاله",
+    "type": "Batch",
+    "has_grader": true,
+    "java_enabled": false,
+    "python_enabled": false,
+    "time_limit": 1.0,
+    "memory_limit": 256,
+    "description": "Mob Grinder (ICPC NAC 2025 F), OI-style with grader"
+}

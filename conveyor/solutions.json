@@ -1,0 +1,13 @@
+{
+    "model.cpp": {"verdict": "model_solution"},
+    "alt.cpp": {"verdict": "correct"},
+    "brute.cpp": {"verdict": "incorrect", "except": {"samples": "correct", "small": "correct"}},
+    "sub_ur.cpp": {"verdict": "incorrect", "except": {"onlyUR": "correct"}},
+    "sub_two.cpp": {"verdict": "incorrect", "except": {"tworows": "correct"}},
+    "sub_dl.cpp": {"verdict": "incorrect", "except": {"minUR": "correct"}},
+    "slow.cpp": {"verdict": "time_limit", "except": {"samples": "correct", "small": "correct"}},
+    "wrong_ronly.cpp": {"verdict": "incorrect"},
+    "wrong_sum.cpp": {"verdict": "incorrect", "except": {"minUR": "correct"}},
+    "wrong_offby1.cpp": {"verdict": "incorrect", "except": {"samples": "correct", "tworows": "correct"}},
+    "wrong_greedy.cpp": {"verdict": "incorrect", "except": {"onlyUR": "correct"}}
+}
