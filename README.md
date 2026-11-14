@@ -30,7 +30,7 @@ git clone --depth 1 --branch v1.5.1 https://github.com/cms-dev/cms /tmp/cms151
 python3 ../tools/cms_loader_check.py /tmp/cms151 statement/conveyor-fa.pdf
 ```
 
-بعد `conveyor/cms-upload/SETTINGS.md` را قدم‌به‌قدم در پنل ادمین انجام دهید.
+**همه‌ی مراحل آپلود در پنل ادمین، قدم‌به‌قدم: [`CMS-UPLOAD-STEPS-fa.md`](CMS-UPLOAD-STEPS-fa.md).**
 
 ## بررسی سوال
 
