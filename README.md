@@ -1,40 +1,37 @@
-# سوال‌های آزمون هفتگی (TPS)
+# C2_q2 — سوال‌های آزمون هفتگی دوره‌ی طلا (TPS)
 
-هر سوال یک پوشه‌ی TPS است. TPS نسخه‌ی `ioi-2017/tps` commit `fd2b587` (اسکریپت‌ها داخل هر سوال کپی شده‌اند).
+قراردادها و درس‌ها: [`CLAUDE.md`](CLAUDE.md). ساختار هم‌سان با ریپوی `amirhosein13/c2_q1`.
 
-## conveyor — تسمه‌نقاله (ICPC NAC 2025 F, Mob Grinder)
+| مسیر | توضیح |
+|---|---|
+| `tps/` | git submodule از [ioi-2017/tps](https://github.com/ioi-2017/tps) روی commit `fd2b587` (اسکریپت‌ها 1.25) |
+| `common/testlib.h` | نسخه‌ی TPS از testlib؛ در `gen/`، `validator/` و `checker/` هر سوال symlink شده |
+| `<task>/scripts` | symlink به `../tps/scripts` |
+| `tools/statement/` | ساخت PDF فارسی راست‌به‌چپ از `statement/index.md` |
+| `tools/make_cms_upload.py` | بسته‌ی آپلود دستی از پنل ادمین CMS |
+| `tools/cms_loader_dryrun.py` | اجرای loader واقعی `tps_task` روی خروجی export، بدون پایگاه داده |
+| `docs/cms-admin-only-fa.md` | راهنمای آپلود از پنل ادمین (CMS 1.5.1) |
+| `conveyor/` | سوال «تسمه‌نقاله» (ICPC NAC 2025 F, Mob Grinder) |
 
-- نوع: Batch با grader، checker اختصاصی، فقط C++.
-- متن: `conveyor/statement/index.md` و `conveyor/statement/conveyor.pdf` (ساخت دوباره: `conveyor/statement/build-pdf.sh`).
-- خروجی آماده‌ی CMS: `export/conveyor-CMS.zip` (پروتکل 1، متن PDF در `statements/fa.pdf` اضافه شده).
-
-### Import در CMS
-
-```bash
-scp export/conveyor-CMS.zip  cms-server:
-ssh cms-server
-unzip conveyor-CMS.zip            # پوشه‌ی conveyor/ ساخته می‌شود
-cmsImportTask -L tps_task conveyor                  # فقط ساخت task
-cmsImportTask -L tps_task -c <contest_id> conveyor  # یا مستقیم اضافه به یک contest
-# اگر task قبلاً import شده: -u
-```
-
-نکته‌ها:
-- loader روی سرور `checker/checker.cpp` را با `g++ -static` کامپایل می‌کند؛ `g++` و کتابخانه‌های static (`libstdc++` static) باید روی سرور باشد.
-- loader زبان PDF را از اسم فایل برمی‌دارد (`fa`) و primary statement را فقط برای `en_US` ست می‌کند؛ در پنل admin زبان اصلی متن را `fa` کنید.
-- زمان‌بندی روی سرور CMS دوباره چک شود (راه‌حل اصلی روی این ماشین حداکثر 0.03 ثانیه، محدودیت 1 ثانیه).
-
-### ساخت دوباره‌ی خروجی
+## راه‌اندازی
 
 ```bash
-export/make-export.sh conveyor    # tps gen + tps export CMS 1 + افزودن statements/fa.pdf → export/conveyor-CMS.zip
+git submodule update --init
+(cd tps && sudo ./install-tps.sh)          # فرمان tps
+pip install psutil && sudo apt install dos2unix
+(cd tools/statement && npm install)        # فقط برای ساخت PDF متن
 ```
 
-### بررسی‌ها
+## کار با سوال
 
 ```bash
 cd conveyor
+tps gen                                    # ۶۹ تست
 tps verify
-tps invoke solution/<sol>.cpp        # حکم مورد انتظار هر راه‌حل در solutions.json
-bash checker-tests/run.sh            # تست‌های دست‌ساز checker
+tps invoke solution/model.cpp              # حکم مورد انتظار همه‌ی راه‌حل‌ها در solutions.json
+bash checker/tests/run.sh                  # ۲۲ خروجی دست‌ساز برای checker
+node ../tools/statement/build.js statement/index.md statement/conveyor-fa.pdf
+python3 ../tools/make_cms_upload.py statement/conveyor-fa.pdf   # → conveyor/cms-upload/ (در git نیست)
 ```
+
+بعد `conveyor/cms-upload/SETTINGS.md` و [`docs/cms-admin-only-fa.md`](docs/cms-admin-only-fa.md) را دنبال کنید.
