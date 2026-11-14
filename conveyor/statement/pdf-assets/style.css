@@ -1,0 +1,16 @@
+@font-face { font-family: Vazirmatn; src: url(Vazirmatn-Regular.woff2) format("woff2"); font-weight: 400; }
+@font-face { font-family: Vazirmatn; src: url(Vazirmatn-Bold.woff2) format("woff2"); font-weight: 700; }
+@page { size: A4; margin: 18mm 16mm; }
+html { direction: rtl; }
+body { font-family: Vazirmatn, sans-serif; font-size: 11pt; line-height: 1.75; color: #111; max-width: none; margin: 0; padding: 0; }
+h1 { text-align: center; font-size: 22pt; margin: 0 0 4mm; }
+h2 { font-size: 14pt; border-bottom: 1px solid #999; padding-bottom: 1mm; margin-top: 7mm; }
+h3 { font-size: 12pt; margin-top: 5mm; }
+pre, code { direction: ltr; unicode-bidi: embed; font-family: "DejaVu Sans Mono", monospace; font-size: 10pt; }
+pre { text-align: left; background: #f3f3f3; border: 1px solid #ddd; padding: 2mm 3mm; border-radius: 2px; white-space: pre-wrap; }
+.math, .katex { direction: ltr; unicode-bidi: isolate; }
+.katex { font-size: 1.05em; }
+table { border-collapse: collapse; margin: 3mm auto; }
+th, td { border: 1px solid #888; padding: 1mm 4mm; }
+header#title-block-header { display: none; }
+.math.inline { display: inline-block; white-space: nowrap; }
